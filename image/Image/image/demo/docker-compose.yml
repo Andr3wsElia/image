@@ -11,6 +11,7 @@ services:
     volumes:
       - ./data:/var/lib/postgresql/data
 
+
   pgadmin:
     image: dpage/pgadmin4
     restart: always
@@ -21,3 +22,5 @@ services:
       - '15432:80'
     depends_on:
       - db
+
+
