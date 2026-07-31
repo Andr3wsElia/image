@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "App Image Lite",
-  description: "IFMT Campus Rondonópolis - ImageLite (2026)",
+  description: "IFMT Campus Rondonópolis - ImageLite   (2026)",
 };
 
 export default function RootLayout({
