@@ -1,13 +1,56 @@
-import { Template } from "../components/Template";
+import { Template, ImageCard } from '@/components';
 
 export default function Galeria() {
     return (
+      <main>
         <Template>
-            <div className="min-h-screen bg-gradient-to-b from-olive-50 via-olive-300 to-olive-600 flex flex-col items-center justify-center p-6">
-                <div className="bg-white/80 backdrop-blur-md p-8 rounded-2xl shadow-xl max-w-md text-center border border-olive-100">
-                    <p className="text-olive-800"><strong>Tela da Galeria</strong></p>
-                </div>
-            </div>
+          
+            <section className="grid grid-cols-4 gap-4  p-4">
+              <ImageCard 
+              imageName='Natureza' 
+              imageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfNKV44LgLqcCIVKoS56GMzSJWre1EH2pY10uJK6EZFw&s=10' 
+              imageSize='15 mb'
+              uploadDate='2023-01-01'
+              />
+              <ImageCard 
+              imageName='Natureza' 
+              imageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfNKV44LgLqcCIVKoS56GMzSJWre1EH2pY10uJK6EZFw&s=10' 
+              imageSize='15 mb'
+              uploadDate='2023-01-01'
+              />
+              <ImageCard 
+              imageName='Natureza' 
+              imageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfNKV44LgLqcCIVKoS56GMzSJWre1EH2pY10uJK6EZFw&s=10' 
+              imageSize='15 mb'
+              uploadDate='2023-01-01'
+              />
+              <ImageCard 
+              imageName='Natureza' 
+              imageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfNKV44LgLqcCIVKoS56GMzSJWre1EH2pY10uJK6EZFw&s=10' 
+              imageSize='15 mb'
+              uploadDate='2023-01-01'
+              />
+              <ImageCard 
+              imageName='Natureza' 
+              imageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfNKV44LgLqcCIVKoS56GMzSJWre1EH2pY10uJK6EZFw&s=10' 
+              imageSize='15 mb'
+              uploadDate='2023-01-01'
+              />
+              <ImageCard 
+              imageName='Natureza' 
+              imageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfNKV44LgLqcCIVKoS56GMzSJWre1EH2pY10uJK6EZFw&s=10' 
+              imageSize='15 mb'
+              uploadDate='2023-01-01'
+              />
+              <ImageCard 
+              imageName='Natureza' 
+              imageUrl='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfNKV44LgLqcCIVKoS56GMzSJWre1EH2pY10uJK6EZFw&s=10' 
+              imageSize='15 mb'
+              uploadDate='2023-01-01'
+              />
+
+            </section>
         </Template>
-    );
+      </main>
+    )
 }
