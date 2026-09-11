@@ -4,7 +4,7 @@
 //import { ImageCard } from '../components/Image';
 import { Template, ImageCard,  } from '@/components';
 import { ImageService, useImageService } from '@/resource/service';
-import { Image } from '../resource/service'; 
+import { Image } from '@/resource/image'; 
 import { useState } from 'react';
 
 
@@ -13,9 +13,10 @@ import { useState } from 'react';
 export default function Galeria() {
   
   const useService = useImageService()
-  const[images, setImages] = useState<ImageService[]>([])
+  const[images, setImages] = useState<Image[]>([])
 
   async function searchImages() {
+    
     const result = await useService.buscar();
     setImages(result);
     console.table(result)
