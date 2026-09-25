@@ -7,10 +7,6 @@ import { ImageService, useImageService } from '@/resource/service';
 import { Image } from '@/resource/image'; 
 import { useState } from 'react';
 
-
-
-
-
 export default function Galeria() {
   
   const useService = useImageService()
@@ -29,6 +25,7 @@ export default function Galeria() {
       <ImageCard key = {image.url}
                  imageName = {image.name} 
                  imageUrl = {image.url}
+                 extension = {image.extension}
                  imageSize = {image.size}
                  uploadDate = {image.uploadDate}
       />
