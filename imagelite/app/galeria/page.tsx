@@ -10,11 +10,19 @@ export default function Galeria() {
   const [query, setQuery] = useState<string>('')
   const [extension, setExtension] = useState<string>('')
   const [buscou, setBuscou] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false) // Novo estado para o loading
 
   async function searchImages() {
-    const result = await useService.buscar(query, extension)
-    setImages(result)
-    setBuscou(true)
+    try {
+      setLoading(true)
+      const result = await useService.buscar(query, extension)
+      setImages(result)
+      setBuscou(true)
+    } catch (error) {
+      console.error('Erro ao buscar imagens:', error)
+    } finally {
+      setLoading(false) // Desativa o loading independentemente de sucesso ou erro
+    }
   }
 
   function renderImageCard(image: Image) {
@@ -74,9 +82,20 @@ export default function Galeria() {
           {/* Botão Buscar Grande e Impactante */}
           <button
             onClick={searchImages}
-            className="bg-white hover:bg-zinc-200 text-zinc-950 text-sm font-bold uppercase tracking-wider py-3.5 px-10 rounded-xl transition-all duration-300 active:scale-95 shadow-[0_0_25px_rgba(255,255,255,0.2)] cursor-pointer"
+            disabled={loading}
+            className="bg-white hover:bg-zinc-200 text-zinc-950 text-sm font-bold uppercase tracking-wider py-3.5 px-10 rounded-xl transition-all duration-300 active:scale-95 shadow-[0_0_25px_rgba(255,255,255,0.2)] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
-            Buscar
+            {loading ? (
+              <>
+                <svg className="animate-spin h-4 w-4 text-zinc-950" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                </svg>
+                Buscando...
+              </>
+            ) : (
+              'Buscar'
+            )}
           </button>
 
           {/* Botão Mobile para Adicionar */}
@@ -87,7 +106,13 @@ export default function Galeria() {
       </section>
 
       <section className="pb-20">
-        {images.length > 0 ? (
+        {loading ? (
+          /* Animação de Loading centralizada na área dos resultados */
+          <div className="py-24 text-center border border-dashed border-white/10 rounded-2xl bg-zinc-900/20 backdrop-blur-sm flex flex-col items-center justify-center gap-4">
+            <div className="w-10 h-10 border-4 border-white/20 border-t-white rounded-full animate-spin"></div>
+            <p className="text-zinc-400 font-light">Carregando imagens...</p>
+          </div>
+        ) : images.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {images.map(renderImageCard)}
           </div>
