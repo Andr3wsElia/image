@@ -118,7 +118,8 @@ const ItemMenu: React.FC<ItemMenuProps> = ({ href, label, ativo }: ItemMenuProps
 const Footer: React.FC = () => {
     return (
         <footer className="border-t border-white/5 mt-20 py-8 text-center text-[10px] font-mono tracking-widest text-zinc-600 uppercase relative z-10">
-            [ IMAGE-LITE ARCHITECTURE ] — IFMT RONDONÓPOLIS 2026
+            by Andrews — IFMT RONDONÓPOLIS 2026
+            [ Built with the assistance of AI. ]
         </footer>
     )
 }
