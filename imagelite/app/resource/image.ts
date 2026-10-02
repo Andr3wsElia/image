@@ -5,5 +5,4 @@ export class Image{
     extension?: string;
     size?: string;
     uploadDate?: string;
-    
 }
