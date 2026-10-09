@@ -2,7 +2,8 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useTheme } from '../providers/ThemeProvider'
 
 interface TemplateProps {
     children: React.ReactNode
@@ -16,22 +17,7 @@ const links = [
 ]
 
 export const Template: React.FC<TemplateProps> = ({ children }: TemplateProps) => {
-    const [theme, setTheme] = useState<ThemeMode>('light')
-
-    useEffect(() => {
-        const saved = window.localStorage.getItem('image-theme') as ThemeMode | null
-        if (saved === 'light' || saved === 'dark') {
-            setTheme(saved)
-            return
-        }
-
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-        setTheme(prefersDark ? 'dark' : 'light')
-    }, [])
-
-    useEffect(() => {
-        window.localStorage.setItem('image-theme', theme)
-    }, [theme])
+    const { theme, setTheme } = useTheme()
 
     const isDark = theme === 'dark'
     const shellStyle = {
