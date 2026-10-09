@@ -1,6 +1,14 @@
 @import "tailwindcss";
 
 @layer base {
+  html {
+    color-scheme: light;
+  }
+
+  html[data-theme='dark'] {
+    color-scheme: dark;
+  }
+
   body {
     background-color: #f7f7f7;
     background-image:
@@ -11,12 +19,41 @@
     font-family: var(--font-sans), Arial, Helvetica, sans-serif;
     min-height: 100vh;
     overflow-x: hidden;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  html[data-theme='dark'] body {
+    background-color: #050505;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    color: #f5f5f5;
   }
 }
 
 .theme-shell {
   background-color: var(--bg);
   color: var(--text);
+}
+
+.theme-shell ::selection,
+.theme-shell *::selection,
+body::selection,
+body *::selection {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.theme-shell[data-theme='dark'] ::selection,
+.theme-shell[data-theme='dark'] *::selection {
+  background: #ffffff;
+  color: #050505;
+}
+
+.theme-shell[data-theme='light'] ::selection,
+.theme-shell[data-theme='light'] *::selection {
+  background: #050505;
+  color: #f7f7f7;
 }
 
 .bg-hud-grid {
@@ -52,8 +89,8 @@
 }
 
 .hero-cube {
-  --cube-size: 140px;
-  --cube-half: 70px;
+  --cube-size: 170px;
+  --cube-half: 85px;
   position: relative;
   width: 220px;
   height: 220px;
@@ -153,26 +190,26 @@
   width: 52px;
   height: 52px;
   margin: 0 auto;
-  perspective: 600px;
+  perspective: 800px;
 }
 
 .gallery-loader__cube {
   position: relative;
-  width: 26px;
-  height: 26px;
+  width: 20px;
+  height: 20px;
   transform-style: preserve-3d;
   animation: galleryCubeSpin 1.2s linear infinite;
-  transform: rotateX(-30deg) rotateY(35deg);
+  transform: rotateX(-25deg) rotateY(40deg);
 }
 
 .gallery-loader__face {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 26px;
-  height: 26px;
-  margin-left: -13px;
-  margin-top: -13px;
+  width: 18px;
+  height: 18px;
+  margin-left: -9px;
+  margin-top: -9px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   background: linear-gradient(135deg, #101010, #2b2b2b);
   box-shadow: inset 0 0 12px rgba(255,255,255,0.12);
@@ -189,12 +226,12 @@
   background: linear-gradient(135deg, #0b0b0b, #2b2b2b);
 }
 
-.gallery-loader__face--front { transform: translateZ(13px); }
-.gallery-loader__face--back { transform: rotateY(180deg) translateZ(13px); }
-.gallery-loader__face--right { transform: rotateY(90deg) translateZ(13px); }
-.gallery-loader__face--left { transform: rotateY(-90deg) translateZ(13px); }
-.gallery-loader__face--top { transform: rotateX(90deg) translateZ(13px); }
-.gallery-loader__face--bottom { transform: rotateX(-90deg) translateZ(13px); }
+.gallery-loader__face--front { transform: translateZ(9px); }
+.gallery-loader__face--back { transform: rotateY(180deg) translateZ(9px); }
+.gallery-loader__face--right { transform: rotateY(90deg) translateZ(9px); }
+.gallery-loader__face--left { transform: rotateY(-90deg) translateZ(9px); }
+.gallery-loader__face--top { transform: rotateX(90deg) translateZ(9px); }
+.gallery-loader__face--bottom { transform: rotateX(-90deg) translateZ(9px); }
 
 @keyframes galleryCubeSpin {
   0% { transform: rotateX(-25deg) rotateY(0deg); }

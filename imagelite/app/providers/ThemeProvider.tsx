@@ -9,39 +9,37 @@ interface ThemeContextType {
   setTheme: (theme: ThemeMode) => void
 }
 
-const ThemeContext = createContext<ThemeContextType | null>(null)
+const ThemeContext = createContext<ThemeContextType>({
+  theme: 'light',
+  setTheme: () => {},
+})
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<ThemeMode>('light')
+  const [theme, setThemeState] = useState<ThemeMode>('light')
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     const saved = window.localStorage.getItem('image-theme') as ThemeMode | null
-    if (saved === 'light' || saved === 'dark') {
-      setTheme(saved)
-    } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      setTheme(prefersDark ? 'dark' : 'light')
-    }
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const nextTheme = saved === 'light' || saved === 'dark' ? saved : prefersDark ? 'dark' : 'light'
+
+    setThemeState(nextTheme)
     setMounted(true)
   }, [])
 
   useEffect(() => {
+    if (!mounted) return
+
+    document.documentElement.dataset.theme = theme
+    document.documentElement.style.colorScheme = theme
     window.localStorage.setItem('image-theme', theme)
-  }, [theme])
+  }, [mounted, theme])
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme: setThemeState }}>
       {children}
     </ThemeContext.Provider>
   )
 }
 
-export const useTheme = () => {
-  const context = useContext(ThemeContext)
-  if (!context) {
-    // Return default theme during SSR
-    return { theme: 'light' as ThemeMode, setTheme: () => {} }
-  }
-  return context
-}
+export const useTheme = () => useContext(ThemeContext)

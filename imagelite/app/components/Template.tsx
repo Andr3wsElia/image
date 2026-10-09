@@ -39,7 +39,7 @@ export const Template: React.FC<TemplateProps> = ({ children }: TemplateProps) =
 
     return (
         <div
-            className="theme-shell min-h-screen flex flex-col selection:bg-black selection:text-white relative"
+            className="theme-shell min-h-screen flex flex-col relative"
             data-theme={theme}
             style={shellStyle}
         >

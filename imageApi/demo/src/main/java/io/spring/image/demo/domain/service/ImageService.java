@@ -6,12 +6,15 @@ import io.spring.image.demo.domain.enums.ImageExtension;
 import java.util.List;
 import java.util.Optional;
 
-
 public interface ImageService {
+
     //salva imagem
     Image save(Image image);
+
     //retorna imagem
     Optional<Image> getById(String id);
+
+    void deleteById(String id);
 
     List<Image> search(ImageExtension extension, String query);
 }

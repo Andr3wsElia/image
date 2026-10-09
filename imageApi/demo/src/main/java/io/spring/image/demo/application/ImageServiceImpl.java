@@ -1,6 +1,5 @@
 package io.spring.image.demo.application;
 
-
 import io.spring.image.demo.domain.entity.Image;
 import io.spring.image.demo.domain.service.ImageService;
 import io.spring.image.demo.domain.enums.ImageExtension;
@@ -16,6 +15,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 
 public class ImageServiceImpl implements ImageService {
+
     private final ImageRepository repository;
 
     @Override
@@ -30,7 +30,13 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public List<Image> search(ImageExtension extension, String query){
+    @Transactional
+    public void deleteById(String id) {
+        repository.deleteById(id);
+    }
+
+    @Override
+    public List<Image> search(ImageExtension extension, String query) {
         return repository.findByExtensionAndNameOrTagsLike(extension, query);
     }
 }

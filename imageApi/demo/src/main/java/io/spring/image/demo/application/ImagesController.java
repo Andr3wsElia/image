@@ -30,17 +30,14 @@ public class ImagesController {
 
     @PostMapping
     public ResponseEntity save(
-            @RequestParam("file")  MultipartFile file,
-            @RequestParam("name")String name,
-            @RequestParam("tags") List<String> tags
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("name") String name,
+            @RequestParam(value = "tags", required = false) List<String> tags
     ) throws IOException {
         log.info("Recebendo tentativa de upload do arquivo: {}", file.getOriginalFilename());
         Image image = mapper.mapToImage(file, name, tags);
-        Image savedImage =  service.save(image);
+        Image savedImage = service.save(image);
         URI imageUri = buildImageURL(savedImage);
-        //http://localhost:8080/upload/asfsdfsfg01012;  url
-
-        //return ResponseEntity.ok().build();
         return ResponseEntity.created(imageUri).build();
     }
     @GetMapping("{id}")
@@ -63,9 +60,7 @@ public class ImagesController {
     @GetMapping
     public ResponseEntity<List<ImageDTO>> search(
             @RequestParam(value = "extension", required = false, defaultValue = "") String extension,
-            @RequestParam(value = "query", required = false) String query) throws InterruptedException {
-        Thread.sleep(3000L);
-        //var result = service.search(ImageExtension.valueOf(extension), query);
+            @RequestParam(value = "query", required = false) String query) {
         var result = service.search(ImageExtension.ofName(extension), query);
 
         var images = result.stream().map(image -> {
@@ -74,6 +69,17 @@ public class ImagesController {
         }).collect(Collectors.toList());
 
         return ResponseEntity.ok(images);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteImage(@PathVariable("id") String id) {
+        var possibleImage = service.getById(id);
+        if (possibleImage.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
     //método que cria a url da imagem
