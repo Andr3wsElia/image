@@ -1,3 +1,4 @@
 export * from './Template'
 export * from './ImageCard'
 export * from './PrimeiroComponente'
+export * from './HeroObject3D'

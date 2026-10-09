@@ -18,30 +18,31 @@ export const PrimeiroComponente = ({ mensagem }: PrimeiroComponenteProps) => {
             <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
                 
                 {/* CAIXA 1: Bloco de Texto Tático */}
-                <div className="relative flex flex-col justify-center gap-6 p-8 sm:p-12 rounded-none bg-gradient-to-b from-zinc-950 via-zinc-900/90 to-black border border-white/15 backdrop-blur-2xl shadow-2xl overflow-hidden min-h-[400px] lg:min-h-[450px]">
+                <div className="relative flex flex-col justify-center gap-6 p-8 sm:p-12 rounded-none border backdrop-blur-2xl shadow-2xl overflow-hidden min-h-[400px] lg:min-h-[450px]" style={{ background: 'var(--panel)', borderColor: 'var(--border)', boxShadow: '0 25px 80px rgba(0,0,0,0.08)' }}>
                     {/* Cantos Estilo HUD */}
                     <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-white/50 m-3 pointer-events-none"></div>
                     <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-white/50 m-3 pointer-events-none"></div>
                     <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-white/50 m-3 pointer-events-none"></div>
                     <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-white/50 m-3 pointer-events-none"></div>
 
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-none border border-white/20 bg-white/5 text-[10px] font-mono text-zinc-300 tracking-wider w-fit">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-none border text-[10px] font-mono tracking-wider w-fit" style={{ borderColor: 'var(--border)', background: 'var(--panel-soft)', color: 'var(--text)' }}>
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                         SYSTEM ACTIVE // v2.6.0
                     </div>
 
-                    <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-white leading-[1.05]">
+                    <h1 className="text-4xl sm:text-5xl font-black tracking-tight leading-[1.05]" style={{ color: 'var(--text)' }}>
                         Suas imagens, simples de achar.
                     </h1>
 
-                    <p className="text-zinc-400 text-sm sm:text-base font-light leading-relaxed max-w-xl">
+                    <p className="text-sm sm:text-base font-light leading-relaxed max-w-xl" style={{ color: 'var(--muted)' }}>
                         {mensagem ?? 'Ecossistema avançado de gerenciamento visual. Alta performance, indexação por banco de dados e interface totalmente voltada para produtividade extrema.'}
                     </p>
 
                     <div className="flex flex-wrap items-center gap-4 pt-2">
                         <Link
                             href="/galeria"
-                            className="px-8 py-4 bg-white text-zinc-950 font-bold text-xs uppercase tracking-widest rounded-none transition-all duration-300 hover:bg-zinc-200 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] active:scale-95"
+                            className="px-8 py-4 font-bold text-xs uppercase tracking-widest rounded-none transition-all duration-300 active:scale-95"
+                            style={{ background: 'var(--text)', color: 'var(--bg)' }}
                         >
                             Abrir Galeria
                         </Link>
@@ -59,10 +60,11 @@ export const PrimeiroComponente = ({ mensagem }: PrimeiroComponenteProps) => {
                 {recursos.map(({ titulo, texto }) => (
                     <div 
                         key={titulo} 
-                        className="p-6 rounded-none bg-zinc-950/60 border border-white/15 backdrop-blur-sm transition-all duration-300 hover:border-white/40 hover:bg-zinc-900/80 group"
+                        className="p-6 rounded-none border backdrop-blur-sm transition-all duration-300 group"
+                        style={{ background: 'var(--panel)', borderColor: 'var(--border)' }}
                     >
-                        <h2 className="font-mono text-xs font-bold text-zinc-300 tracking-widest">{titulo}</h2>
-                        <p className="mt-3 text-xs sm:text-sm text-zinc-400 leading-relaxed font-light">{texto}</p>
+                        <h2 className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text)' }}>{titulo}</h2>
+                        <p className="mt-3 text-xs sm:text-sm leading-relaxed font-light" style={{ color: 'var(--muted)' }}>{texto}</p>
                     </div>
                 ))}
             </section>
