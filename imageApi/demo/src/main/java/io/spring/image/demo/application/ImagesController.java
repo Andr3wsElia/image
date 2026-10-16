@@ -75,7 +75,7 @@ public class ImagesController {
     public ResponseEntity<Void> deleteImage(@PathVariable("id") String id) {
         var possibleImage = service.getById(id);
         if (possibleImage.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build();.+
         }
 
         service.deleteById(id);

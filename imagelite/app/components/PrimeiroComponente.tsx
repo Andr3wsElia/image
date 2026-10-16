@@ -15,10 +15,9 @@ export const PrimeiroComponente = ({ mensagem }: PrimeiroComponenteProps) => {
     return (
         <div className="flex flex-col gap-16 py-10 relative">
             {/* Grid Principal dividido em 2 Caixas perfeitamente simétricas */}
-            <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-                
+            <section className="grid w-full grid-cols-1 gap-8 items-stretch lg:grid-cols-[1.15fr_1.15fr]">
                 {/* CAIXA 1: Bloco de Texto Tático */}
-                <div className="relative flex flex-col justify-center gap-6 p-8 sm:p-12 rounded-none border backdrop-blur-2xl shadow-2xl overflow-hidden min-h-[400px] lg:min-h-[450px]" style={{ background: 'var(--panel)', borderColor: 'var(--border)', boxShadow: '0 25px 80px rgba(0,0,0,0.08)' }}>
+                <div className="relative flex h-full flex-col justify-center gap-6 p-8 sm:p-12 rounded-none border backdrop-blur-2xl shadow-2xl overflow-hidden min-h-[600px] lg:min-h-[560px]" style={{ background: 'var(--panel)', borderColor: 'var(--border)', boxShadow: '0 25px 80px rgba(0,0,0,0.08)' }}>
                     {/* Cantos Estilo HUD */}
                     <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-white/50 m-3 pointer-events-none"></div>
                     <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-white/50 m-3 pointer-events-none"></div>
@@ -50,7 +49,7 @@ export const PrimeiroComponente = ({ mensagem }: PrimeiroComponenteProps) => {
                 </div>
 
                 {/* CAIXA 2: Bloco do Objeto 3D (Mesmo tamanho exato) */}
-                <div>
+                <div className="h-full min-h-[600px] lg:min-h-[560px]">
                     <HeroObject3D />
                 </div>
             </section>

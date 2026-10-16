@@ -45,10 +45,8 @@ export const HeroObject3D: React.FC = () => {
       <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 m-3 z-20 pointer-events-none" style={{ borderColor: 'var(--border)' }} />
       <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 m-3 z-20 pointer-events-none" style={{ borderColor: 'var(--border)' }} />
 
-      <div className="absolute inset-0 bg-hud-grid opacity-25" />
-
       <div className="absolute w-[280px] h-[280px] rounded-full border animate-[spin_20s_linear_infinite]" style={{ borderColor: 'var(--border)' }} />
-      <div className="absolute w-[200px] h-[200px] rounded-full border border-dashed animate-[spin_15s_linear_infinite_reverse]" style={{ borderColor: 'var(--border)' }} />
+      <div className="absolute w-[280px] h-[280px] rounded-full border border-dashed animate-[spin_15s_linear_infinite_reverse]" style={{ borderColor: 'var(--border)' }} />
 
       <div className="hero-cube z-10" style={{ width: '220px', height: '220px' }}>
         <div className="hero-cube__stage group-hover:scale-110 transition-transform duration-700" style={{ width: '220px', height: '220px' }}>

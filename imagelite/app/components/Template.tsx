@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -21,7 +21,7 @@ export const Template: React.FC<TemplateProps> = ({ children }: TemplateProps) =
 
     const isDark = theme === 'dark'
     const shellStyle = {
-        background: isDark ? '#050505' : '#f7f7f7',
+        backgroundColor: isDark ? '#050505' : '#f7f7f7',
         color: isDark ? '#f5f5f5' : '#050505',
         ['--bg' as any]: isDark ? '#050505' : '#f7f7f7',
         ['--panel' as any]: isDark ? '#0b0b0b' : '#ffffff',
@@ -29,7 +29,10 @@ export const Template: React.FC<TemplateProps> = ({ children }: TemplateProps) =
         ['--text' as any]: isDark ? '#f5f5f5' : '#050505',
         ['--muted' as any]: isDark ? '#b8b8b8' : '#4b4b4b',
         ['--border' as any]: isDark ? 'rgba(255,255,255,0.14)' : 'rgba(0,0,0,0.12)',
-        ['--grid' as any]: isDark ? 'rgba(255,255,255,0.14)' : 'rgba(0,0,0,0.12)',
+        ['--grid' as any]: isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)',
+        ['--edge-tint' as any]: isDark ? 'hsla(0, 0%, 0%, 0.95)' : 'hsla(0, 0%, 100%, 0.95)',
+        ['--edge-shadow' as any]: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.12)',
+        ['--edge-fade' as any]: isDark ? 'rgba(0,0,0,0.96)' : 'rgba(255,255,255,0.96)',
         ['--button-bg' as any]: isDark ? '#ffffff' : '#111111',
         ['--button-text' as any]: isDark ? '#050505' : '#ffffff',
         ['--button-hover' as any]: isDark ? '#e5e5e5' : '#2b2b2b',
@@ -43,14 +46,8 @@ export const Template: React.FC<TemplateProps> = ({ children }: TemplateProps) =
             data-theme={theme}
             style={shellStyle}
         >
-            <div className="absolute inset-0 pointer-events-none z-0" style={{
-                background: isDark
-                    ? 'radial-gradient(circle at center, rgba(255,255,255,0.02), rgba(5,5,5,0.8) 70%, #050505 100%)'
-                    : 'radial-gradient(circle at center, rgba(0,0,0,0.02), rgba(247,247,247,0.82) 70%, #f7f7f7 100%)'
-            }} />
-
             <Header theme={theme} onToggleTheme={() => setTheme(isDark ? 'light' : 'dark')} />
-            <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 py-8 relative z-10">
+            <main className="flex-1 w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 py-8 relative z-10">
                 {children}
             </main>
             <Footer />
@@ -213,7 +210,7 @@ const Footer: React.FC = () => {
     return (
         <footer className="border-t mt-20 py-8 text-center text-[10px] font-mono tracking-widest uppercase relative z-10" style={{
             borderColor: 'rgba(0,0,0,0.08)',
-            color: '#6b6b6b'
+            color: 'rgb(255, 255, 255)'
         }}>
             by Andrews — IFMT RONDONÓPOLIS 2026
             [ Built with the assistance of AI. ]

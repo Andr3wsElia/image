@@ -1,39 +1,84 @@
 @import "tailwindcss";
 
 @layer base {
+  :root {
+    --bg: #f7f7f7;
+    --grid: rgba(0, 0, 0, 0.78);
+    --edge-fade: rgba(255, 255, 255, 0.98);
+    --text: #050505;
+    --panel: #ffffff;
+    --panel-soft: #f1f1f1;
+    --border: rgba(0, 0, 0, 0.12);
+    --muted: #4b4b4b;
+  }
+
   html {
     color-scheme: light;
+    background-color: var(--bg);
   }
 
   html[data-theme='dark'] {
     color-scheme: dark;
+    --bg: #050505;
+    --grid: rgba(255, 255, 255, 0.76);
+    --edge-fade: rgba(0, 0, 0, 0.98);
+    --text: #f5f5f5;
+    --panel: #0b0b0b;
+    --panel-soft: #111111;
+    --border: rgba(255, 255, 255, 0.14);
+    --muted: #b8b8b8;
   }
 
   body {
-    background-color: #f7f7f7;
-    background-image:
-      linear-gradient(rgba(0, 0, 0, 0.12) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.12) 1px, transparent 1px);
-    background-size: 32px 32px, 32px 32px;
-    color: #050505;
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text);
     font-family: var(--font-sans), Arial, Helvetica, sans-serif;
     min-height: 100vh;
     overflow-x: hidden;
     transition: background-color 0.25s ease, color 0.25s ease;
   }
-
-  html[data-theme='dark'] body {
-    background-color: #050505;
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-    color: #f5f5f5;
-  }
 }
 
 .theme-shell {
+  position: relative;
+  min-height: 100vh;
   background-color: var(--bg);
+  background-image:
+    repeating-linear-gradient(45deg, var(--grid) 0 2px, transparent 2px 30px),
+    repeating-linear-gradient(-45deg, var(--grid) 0 2px, transparent 2px 30px);
+  background-size: 100% 100%, 100% 100%;
+  background-position: center center, center center;
+  background-repeat: repeat, repeat;
+  background-attachment: fixed;
+  box-shadow: inset 0 0 90px var(--edge-shadow);
   color: var(--text);
+  isolation: isolate;
+}
+
+.theme-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(to right,
+      var(--edge-tint) 0%,
+      rgba(0, 0, 0, 0) 26%,
+      rgba(0, 0, 0, 0) 74%,
+      var(--edge-tint) 100%),
+    linear-gradient(to bottom,
+      var(--edge-tint) 0%,
+      rgba(0, 0, 0, 0) 26%,
+      rgba(0, 0, 0, 0) 74%,
+      var(--edge-tint) 100%);
+  opacity: 1;
+}
+
+.theme-shell > * {
+  position: relative;
+  z-index: 1;
 }
 
 .theme-shell ::selection,
@@ -70,13 +115,14 @@ body *::selection {
 .hero-scene {
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 100%;
+  min-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   border: 1px solid var(--border);
-  background: linear-gradient(180deg, var(--panel), var(--panel-soft));
+  background: var(--panel);
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.08);
 }
 
@@ -84,7 +130,7 @@ body *::selection {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0));
+  background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
   pointer-events: none;
 }
 

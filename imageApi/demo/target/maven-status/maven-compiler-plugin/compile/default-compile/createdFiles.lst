@@ -1,0 +1,13 @@
+io\spring\image\demo\domain\entity\Image.class
+io\spring\image\demo\infra\repository\specs\ImageSpecs.class
+io\spring\image\demo\application\ImageMapper.class
+io\spring\image\demo\application\ImagesController.class
+io\spring\image\demo\infra\repository\specs\GenericSpecs.class
+io\spring\image\demo\ImageApplication.class
+io\spring\image\demo\application\ImageDTO.class
+io\spring\image\demo\domain\enums\ImageExtension.class
+io\spring\image\demo\application\ImageServiceImpl.class
+io\spring\image\demo\domain\service\ImageService.class
+io\spring\image\demo\application\ImageDTO$ImageDTOBuilder.class
+io\spring\image\demo\domain\entity\Image$ImageBuilder.class
+io\spring\image\demo\infra\repository\ImageRepository.class

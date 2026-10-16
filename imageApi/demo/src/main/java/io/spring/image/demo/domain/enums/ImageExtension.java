@@ -11,7 +11,7 @@ public enum ImageExtension {
     JPG (MediaType.IMAGE_JPEG),
     GIF (MediaType.IMAGE_GIF),
     JPEG (MediaType.IMAGE_JPEG);
-//    WebP (MediaType.IMAGE)
+//    WebP (MediaType.IMAGE),
 
     @Getter
     private MediaType mediaType;

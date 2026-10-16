@@ -1,0 +1,141 @@
+Resumo de correções e otimizações aplicadas no projeto ImageLite + Image API
+
+1) CONTEXTO
+- Projeto dividido em duas partes:
+  - Frontend: imagelite/
+  - Backend: imageApi/demo/
+- Objetivo: deixar a interface premium em preto e branco, corrigir problemas visuais do cubo/loader, estabilizar a galeria, e resolver erros de backend e performance.
+
+2) OTIMIZAÇÕES NO FRONTEND
+2.1 Tema claro/escuro com persistência
+- Implementado ThemeProvider para manter o tema entre páginas.
+- Tema salvo em localStorage com fallback para "prefers-color-scheme" do sistema.
+- O tema agora sobreviva ao trocar de tela.
+- Ajustado CSS para ficar em preto e branco premium com grid e contraste correto para claro/escuro.
+
+2.2 Cubo e loaders
+- Cubo principal da home ajustado para ficar maior e mais visível.
+- Loader da galeria alterado para usar o mesmo estilo de cubo, com proporções mais corretas.
+- Corrigido o problema do espaço excessivo entre as faces do cubo.
+- Ajustado o visual para ficar monocromático e manter o mesmo design premium.
+
+2.3 Galeria
+- Galeria passa a buscar automaticamente ao abrir a página.
+- Corrigido efeito de busca repetida/infinita.
+- Adicionado filtro por extensão, busca por texto e organização por:
+  - mais recentes
+  - mais antigos
+  - nome A-Z
+  - nome Z-A
+  - maior tamanho
+  - menor tamanho
+- Adicionado loading visual consistente.
+- Ajustado comportamento do botão de busca.
+
+2.4 Upload
+- Fluxo de upload com página /upload.
+- FormData enviado corretamente com `file`, `name` e `tags`.
+- Tags normalizadas para minúsculas antes do envio.
+- Ao enviar, redireciona de volta para /galeria com busca pelo nome.
+
+2.5 Delete e confirmação
+- Botão Delete em cada card.
+- Antes de apagar, aparece confirmação via `window.confirm()`.
+- Depois da confirmação, a imagem é removida via DELETE na API.
+- Remove do estado local da galeria imediatamente.
+
+2.6 Download da imagem
+- Ajustado para usar link temporário com `download`, evitando abas abertas por pop-up.
+- Isso evita a janela de download ficar pendurada e permite o browser controlar o fluxo corretamente.
+
+2.7 Seleção de texto
+- Ajustado CSS de seleção de texto para seguir o tema atual.
+- Em tema escuro: seleção branca sobre fundo preto.
+- Em tema claro: seleção preta sobre fundo branco.
+
+3) OTIMIZAÇÕES NO BACKEND
+3.1 Resolvido problema de bytecode quebrado
+- O erro `ClassFormatError: Invalid method Code length 0 in class file ... Image` foi causado por classes antigas/corrompidas na pasta target.
+- Solução: limpeza do build com Maven usando:
+  - mvn clean compile
+- Depois disso, todas as classes foram recompiladas corretamente.
+
+3.2 Corrigidos conflitos de enums e imports
+- Removido enum duplicado/errado que estava confundindo o compilador.
+- Mantido o enum correto no pacote de domínio:
+  - io.spring.image.demo.domain.enums.ImageExtension
+
+3.3 Ajustes de API e dados
+- DTO e mapper ajustados para expor corretamente os campos esperados pela galeria.
+- Tags normalizadas em minúsculas.
+- Endpoint de delete implementado para remover imagens pela API.
+- Busca por nome e filtros com ImageSpecs ajustados para funcionar corretamente.
+
+3.4 Duplicação de dependências e conflitos
+- Ajustado pom.xml para remover dependências duplicadas/antigas que causavam conflitos.
+- Corrigidos pontos que impediam o app de subir corretamente.
+
+4) O QUE DEIXOU O SITE MAIS RÁPIDO
+- Correção do loop infinito de busca na galeria.
+- Memorização do service para evitar recriação de instâncias em render.
+- uso de useRef para estabilizar `useEffect`.
+- uso de useMemo para ordenar imagens sem recalcular tudo a cada render.
+- rebuild limpo sem classes antigas quebradas.
+- menos requisições redundantes ao backend.
+- menos carga no banco e menos processamento duplicado.
+
+5) PRINCIPAIS FILES ALTERADOS
+Frontend:
+- imagelite/app/components/Template.tsx
+- imagelite/app/providers/ThemeProvider.tsx
+- imagelite/app/globals.css
+- imagelite/app/galeria/page.tsx
+- imagelite/app/components/HeroObject3D.tsx
+- imagelite/app/components/ImageCard.tsx
+- imagelite/app/upload/page.tsx
+- imagelite/app/resource/service.ts
+- imagelite/app/resource/image.ts
+- imagelite/app/components/Input.tsx
+- imagelite/app/components/Button.tsx
+- imagelite/app/components/index.tsx
+
+Backend:
+- imageApi/demo/src/main/java/io/spring/image/demo/domain/entity/Image.java
+- imageApi/demo/src/main/java/io/spring/image/demo/domain/enums/ImageExtension.java
+- imageApi/demo/src/main/java/io/spring/image/demo/application/ImagesController.java
+- imageApi/demo/src/main/java/io/spring/image/demo/application/ImageMapper.java
+- imageApi/demo/src/main/java/io/spring/image/demo/application/ImageDTO.java
+- imageApi/demo/src/main/java/io/spring/image/demo/application/ImageServiceImpl.java
+- imageApi/demo/src/main/java/io/spring/image/demo/infra/repository/ImageRepository.java
+- imageApi/demo/src/main/java/io/spring/image/demo/infra/repository/specs/ImageSpecs.java
+- imageApi/demo/pom.xml
+
+6) COMANDOS USADOS PARA VALIDAÇÃO
+Frontend:
+- cd C:\Users\GERAL\Documents\Andrews\image\imagelite
+- npm run build
+
+Backend:
+- cd C:\Users\GERAL\Documents\Andrews\image\imageApi\demo
+- C:\apache-maven-3.10.0\bin\mvn.cmd clean compile
+- C:\apache-maven-3.10.0\bin\mvn.cmd spring-boot:run
+
+7) RESULTADO FINAL
+- Frontend compilando corretamente.
+- Backend compilando corretamente.
+- API respondendo corretamente em http://localhost:8080/images.
+- Interface premium em preto e branco estável, galeria funcionando, upload e delete funcionando, com melhor performance geral.
+
+8) DICA PARA EXPORTAR PARA OUTROS PROJETOS
+Se for transferir para outra pessoa com problema parecido, pesquise por estes pontos:
+- loops de useEffect em galeria
+- instâncias de serviço recriadas em render
+- target/ com classes antigas quebradas
+- enums duplicados
+- `mvn clean compile` antes de testar
+- requests repetidas ao backend
+- uso de `useMemo`/`useRef` para estabilizar render
+
+9) ARQUIVO GERADO
+Este resumo foi salvo em:
+C:\Users\GERAL\Documents\Andrews\image\resumo-mudancas-projeto.txt
