@@ -2,7 +2,10 @@ C:\Users\GERAL\Documents\Andrews\image\imageApi\demo\src\main\java\io\spring\ima
 C:\Users\GERAL\Documents\Andrews\image\imageApi\demo\src\main\java\io\spring\image\demo\application\images\ImageMapper.java
 C:\Users\GERAL\Documents\Andrews\image\imageApi\demo\src\main\java\io\spring\image\demo\application\images\ImagesController.java
 C:\Users\GERAL\Documents\Andrews\image\imageApi\demo\src\main\java\io\spring\image\demo\application\images\ImageServiceImpl.java
+C:\Users\GERAL\Documents\Andrews\image\imageApi\demo\src\main\java\io\spring\image\demo\application\jwt\JwtService.java
+C:\Users\GERAL\Documents\Andrews\image\imageApi\demo\src\main\java\io\spring\image\demo\application\jwt\SecretKeyGenerator.java
 C:\Users\GERAL\Documents\Andrews\image\imageApi\demo\src\main\java\io\spring\image\demo\application\users\UserServiceImp.java
+C:\Users\GERAL\Documents\Andrews\image\imageApi\demo\src\main\java\io\spring\image\demo\config\SecurityConfig.java
 C:\Users\GERAL\Documents\Andrews\image\imageApi\demo\src\main\java\io\spring\image\demo\domain\AccessToken.java
 C:\Users\GERAL\Documents\Andrews\image\imageApi\demo\src\main\java\io\spring\image\demo\domain\entity\Image.java
 C:\Users\GERAL\Documents\Andrews\image\imageApi\demo\src\main\java\io\spring\image\demo\domain\entity\User.java

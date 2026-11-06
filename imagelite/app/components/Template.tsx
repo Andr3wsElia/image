@@ -14,6 +14,7 @@ type ThemeMode = 'light' | 'dark'
 const links = [
     { href: '/', label: 'Início' },
     { href: '/galeria', label: 'Galeria' },
+    { href: '/login', label: 'Login' },
 ]
 
 export const Template: React.FC<TemplateProps> = ({ children }: TemplateProps) => {

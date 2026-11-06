@@ -19,13 +19,13 @@ public class ImageMapper {
                 .distinct()
                 .toList();
 
-        return Image.builder()
-                .name(name)
-                .tags(String.join(",", normalizedTags))
-                .size(file.getSize())
-                .extension(ImageExtension.valueOf(MediaType.valueOf(file.getContentType())))
-                .file(file.getBytes())
-                .build();
+        Image image = new Image();
+        image.setName(name);
+        image.setTags(String.join(",", normalizedTags));
+        image.setSize(file.getSize());
+        image.setExtension(ImageExtension.valueOf(MediaType.valueOf(file.getContentType())));
+        image.setFile(file.getBytes());
+        return image;
     }
 
     public ImageDTO imageToDTO(Image image, String url) {
@@ -38,14 +38,14 @@ public class ImageMapper {
                         .map(String::toLowerCase)
                         .toList();
 
-        return ImageDTO.builder()
-                .id(image.getId())
-                .url(url)
-                .extension(image.getExtension().name())
-                .name(image.getName())
-                .size(image.getSize())
-                .tags(parsedTags)
-                .uploadDate(image.getUploadDate().toLocalDate())
-                .build();
+        return new ImageDTO(
+                image.getId(),
+                url,
+                image.getName(),
+                image.getExtension().name(),
+                image.getSize(),
+                parsedTags,
+                image.getUploadDate().toLocalDate()
+        );
     }
 }
