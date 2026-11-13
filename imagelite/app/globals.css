@@ -122,6 +122,7 @@ body *::selection {
   justify-content: center;
   overflow: hidden;
   border: 1px solid var(--border);
+  border-radius: 32px;
   background: var(--panel);
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.08);
 }

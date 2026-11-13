@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Table
 @EntityListeners(AuditingEntityListener.class)
 public class Image {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
@@ -27,7 +28,7 @@ public class Image {
     @Column
     private String tags;
 
-    @Column(name = "file",columnDefinition = "LONGBLOB")
+    @Column(name = "file", columnDefinition = "LONGBLOB")
     @Lob
     private byte[] file;
 
@@ -44,23 +45,63 @@ public class Image {
         this.file = file;
     }
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    public Long getSize() { return size; }
-    public void setSize(Long size) { this.size = size; }
-    public ImageExtension getExtension() { return extension; }
-    public void setExtension(ImageExtension extension) { this.extension = extension; }
-    public LocalDateTime getUploadDate() { return uploadDate; }
-    public void setUploadDate(LocalDateTime uploadDate) { this.uploadDate = uploadDate; }
-    public String getTags() { return tags; }
-    public void setTags(String tags) { this.tags = tags; }
-    public byte[] getFile() { return file; }
-    public void setFile(byte[] file) { this.file = file; }
+    public String getId() {
+        return id;
+    }
 
-    public String getFileName(){
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getSize() {
+        return size;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
+    }
+
+    public ImageExtension getExtension() {
+        return extension;
+    }
+
+    public void setExtension(ImageExtension extension) {
+        this.extension = extension;
+    }
+
+    public LocalDateTime getUploadDate() {
+        return uploadDate;
+    }
+
+    public void setUploadDate(LocalDateTime uploadDate) {
+        this.uploadDate = uploadDate;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public byte[] getFile() {
+        return file;
+    }
+
+    public void setFile(byte[] file) {
+        this.file = file;
+    }
+
+    public String getFileName() {
         return getName().concat(".").concat(getExtension().name());
     }
 }
-

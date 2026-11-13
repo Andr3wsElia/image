@@ -91,7 +91,7 @@ const Header: React.FC<HeaderProps> = ({ theme, onToggleTheme }) => {
                     <span className="tracking-widest text-sm uppercase">Image<span style={{ color: isDark ? '#a0a0a0' : '#5a5a5a' }} className="font-light">Lite</span></span>
                 </Link>
 
-                <nav className="hidden sm:flex items-center gap-8 border px-6 py-2 rounded-full backdrop-blur-md" style={{
+                <nav className="hidden sm:flex items-center gap-8 rounded-[28px] border px-6 py-2 rounded-full backdrop-blur-md" style={{
                     background: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)',
                     borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'
                 }}>

@@ -17,14 +17,10 @@ export const PrimeiroComponente = ({ mensagem }: PrimeiroComponenteProps) => {
             {/* Grid Principal dividido em 2 Caixas perfeitamente simétricas */}
             <section className="grid w-full grid-cols-1 gap-8 items-stretch lg:grid-cols-[1.15fr_1.15fr]">
                 {/* CAIXA 1: Bloco de Texto Tático */}
-                <div className="relative flex h-full flex-col justify-center gap-6 p-8 sm:p-12 rounded-none border backdrop-blur-2xl shadow-2xl overflow-hidden min-h-[600px] lg:min-h-[560px]" style={{ background: 'var(--panel)', borderColor: 'var(--border)', boxShadow: '0 25px 80px rgba(0,0,0,0.08)' }}>
+                <div className="relative flex h-full flex-col justify-center gap-6 p-8 sm:p-12 rounded-[24px] border backdrop-blur-2xl shadow-2xl overflow-hidden min-h-[600px] lg:min-h-[560px]" style={{ background: 'var(--panel)', borderColor: 'var(--border)', boxShadow: '0 25px 80px rgba(0,0,0,0.08)' }}>
                     {/* Cantos Estilo HUD */}
-                    <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-white/50 m-3 pointer-events-none"></div>
-                    <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-white/50 m-3 pointer-events-none"></div>
-                    <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-white/50 m-3 pointer-events-none"></div>
-                    <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-white/50 m-3 pointer-events-none"></div>
 
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-none border text-[10px] font-mono tracking-wider w-fit" style={{ borderColor: 'var(--border)', background: 'var(--panel-soft)', color: 'var(--text)' }}>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[12px] border text-[10px] font-mono tracking-wider w-fit" style={{ borderColor: 'var(--border)', background: 'var(--panel-soft)', color: 'var(--text)' }}>
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                         SYSTEM ACTIVE // v2.6.0
                     </div>
@@ -40,7 +36,7 @@ export const PrimeiroComponente = ({ mensagem }: PrimeiroComponenteProps) => {
                     <div className="flex flex-wrap items-center gap-4 pt-2">
                         <Link
                             href="/galeria"
-                            className="px-8 py-4 font-bold text-xs uppercase tracking-widest rounded-none transition-all duration-300 active:scale-95"
+                            className="px-8 py-4 font-bold text-xs uppercase tracking-widest rounded-[12px] transition-all duration-300 active:scale-95"
                             style={{ background: 'var(--text)', color: 'var(--bg)' }}
                         >
                             Abrir Galeria
@@ -49,7 +45,7 @@ export const PrimeiroComponente = ({ mensagem }: PrimeiroComponenteProps) => {
                 </div>
 
                 {/* CAIXA 2: Bloco do Objeto 3D (Mesmo tamanho exato) */}
-                <div className="h-full min-h-[600px] lg:min-h-[560px]">
+                <div className="h-full min-h-[600px] rounded-[12px] lg:min-h-[560px]">
                     <HeroObject3D />
                 </div>
             </section>
@@ -59,7 +55,7 @@ export const PrimeiroComponente = ({ mensagem }: PrimeiroComponenteProps) => {
                 {recursos.map(({ titulo, texto }) => (
                     <div 
                         key={titulo} 
-                        className="p-6 rounded-none border backdrop-blur-sm transition-all duration-300 group"
+                        className="p-6 rounded-[12px] border backdrop-blur-sm transition-all duration-300 group"
                         style={{ background: 'var(--panel)', borderColor: 'var(--border)' }}
                     >
                         <h2 className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text)' }}>{titulo}</h2>

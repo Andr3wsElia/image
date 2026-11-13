@@ -21,7 +21,7 @@ public class JwtService {
         this.keyGeneretor = keyGeneretor;
     }
 
-    public AccessToken generateToken(User user){
+    public AccessToken generateToken(User user) {
         var key = keyGeneretor.getKey();
         var expirationDate = generateExpirationDate();
         var claims = generateTokenClaims(user);
@@ -42,7 +42,7 @@ public class JwtService {
         return Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
     }
 
-    private Map<String, Object> generateTokenClaims(User user){
+    private Map<String, Object> generateTokenClaims(User user) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("name", user.getName());
         return claims;
